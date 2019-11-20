@@ -13,7 +13,7 @@ export class AppComponent {
   @ViewChild('countrySearchInput', { static: true }) countrySearchInput: ElementRef;
 
   public title = 'countries-rxjs';
-  public countries$: any;
+  public countries$: Observable<any>;
   public selectedCountry$: Observable<any>;
 
   constructor(private countriesService: CountriesService) { }
