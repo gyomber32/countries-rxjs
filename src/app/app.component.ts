@@ -13,7 +13,7 @@ export class AppComponent {
   @ViewChild('countrySearchInput', { static: true }) countrySearchInput: ElementRef;
 
   public title = 'countries-rxjs';
-  public countries: any;
+  public countries$: any;
   public selectedCountry$: Observable<any>;
 
   constructor(private countriesService: CountriesService) { }
@@ -23,7 +23,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    fromEvent(this.countrySearchInput.nativeElement, 'keyup').pipe(
+     this.countries$ = fromEvent(this.countrySearchInput.nativeElement, 'keyup').pipe(
       map((event: any) => {
         return event.target.value;
       }),
@@ -33,9 +33,7 @@ export class AppComponent {
       switchMap((countryName) => {
         return this.countriesService.getCountries(countryName);
       })
-    ).subscribe((countries) => {
-      this.countries = countries;
-    });
+    );
   }
 
 }

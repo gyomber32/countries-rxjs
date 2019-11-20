@@ -2,7 +2,7 @@
     <mat-form-field>
         <input matInput type="text" #countrySearchInput placeholder="Search for countries" aria-label="State" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let country of countries" [value]="country.name" (click)="selectCountryByName(country.name)">
+            <mat-option *ngFor="let country of countries$ | async" [value]="country.name" (click)="selectCountryByName(country.name)">
                 {{country.name}}
             </mat-option>
         </mat-autocomplete>
